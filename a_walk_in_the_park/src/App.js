@@ -1,17 +1,21 @@
 import './App.css';
-import { ReactP5Wrapper } from "@p5-wrapper/react";
-import sketch from './p5 stuff/p5_object';
+import {Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import Home from './components/Home/home';
+import Level1 from './components/Level1/level1';
+
+function NotFound() {
+  return <p>Unable to find requested page.</p>
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-      </header>
-      <body>
-        <ReactP5Wrapper sketch={sketch} />
-      </body>
-    </div>
+    <Router>
+      <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/level1" element={<Level1/>}/>
+      <Route path="*" element={<NotFound/>}/>
+      </Routes>
+    </Router>
   );
 }
 
