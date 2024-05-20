@@ -1,0 +1,15 @@
+.home-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+    z-index: 1000; /* Ensure it stays on top */
+  }
+  
+  .home-button:hover {
+    color: #007BFF;
+  }
