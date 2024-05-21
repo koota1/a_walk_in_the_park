@@ -1,36 +1,43 @@
+@font-face {
+  font-family: 'Redaction-35';
+  src: url('/Users/kotab/hcde438/a_walk_in_the_park/a_walk_in_the_park/src/assets/fonts/Redaction_35-Italic.woff2');
+}
+
+
 @keyframes pixelate {
-    0% {
-      filter: none;
-    }
-    100% {
-      filter: contrast(150%) saturate(2) blur(1px);
-      transform: scale(1.2);
-    }
+  0% {
+    filter: none;
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  100% {
+    filter: contrast(150%) saturate(2);
+    transform: scale(1.5);
   }
+}
   
-  .pixelated-welcome {
-    font-size: 2rem;
-    animation: pixelate 2s ease-in-out forwards;
-  }
-  
-  .fade-in {
-    animation: fadeIn 3s ease-in-out forwards;
-    animation-delay: 2s;
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    margin-top: 20px;
   }
-  
-  .container {
-    text-align: center;
-    margin-top: 20vh;
+  to {
+    opacity: 1;
   }
-  
+}
+
+.pixelated-welcome {
+  font-size: 10rem;
+  font-family: 'Redaction-35';
+  animation: pixelate 2s ease-in-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 3s ease-in-out forwards;
+  animation-delay: 2s;
+  opacity: 0;
+  margin-top: 20px;
+}
+
+.container {
+  text-align: center;
+  margin-top: 20vh;
+}
+ 

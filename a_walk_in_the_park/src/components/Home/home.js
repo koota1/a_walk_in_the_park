@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowButtons(true);
-    }, 2000); // Match the duration of pixelate animation
+    }, 500); // Match the duration of pixelate animation
     return () => clearTimeout(timer);
   }, []);
 
