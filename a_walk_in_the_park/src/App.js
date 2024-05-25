@@ -11,9 +11,9 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/level1" element={<Level1/>}/>
-      <Route path="*" element={<NotFound/>}/>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/level1" element={<Level1/>}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </Router>
   );

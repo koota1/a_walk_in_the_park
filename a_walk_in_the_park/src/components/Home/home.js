@@ -22,9 +22,8 @@ function Home() {
       <div className="pixelated-welcome">Welcome</div>
       {showButtons && (
         <div className="fade-in">
-          <div className="home-button" onClick={handleStartClick}> Start </div>
-          <div className="home-button"> Load </div>
-          <button>Load</button>
+          <div className="start-button" onClick={handleStartClick}> Start </div>
+          <div className="start-button"> Load </div>
         </div>
       )}
     </div>
