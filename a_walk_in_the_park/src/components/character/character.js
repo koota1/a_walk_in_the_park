@@ -45,19 +45,13 @@ function CharSelection({ user }) {
   }
   
   return (
-    <div>
+    <div className = "characters-wrapper">
       <h3>Set Character!</h3>
       <div className='char-select'>
-        <span className='char-select-button' onClick={() => setNewChar(1)}>
-          square
-        </span>
-        <span className='char-select-button' onClick={() => setNewChar(2)}>
-          ellipse
-        </span>
-        <span className='start-button' onClick={handleNextClick}>
-          Start
-        </span>
+        <span className='button'onClick={() => setNewChar(1)}> square </span>
+        <span className='button'onClick={() => setNewChar(2)}> ellipse </span>
       </div>
+      <span className='button' onClick={handleNextClick}> Start </span>  
     </div>
   );
 }

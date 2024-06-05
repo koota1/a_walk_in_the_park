@@ -2,10 +2,12 @@
 function Sketch1(p5) {
 
   let [xPos, yPos] = [100, 100];
+  const squareSize = 100;
+  const staticSquare = { x: 20, y: 35, size: 40 };
 
   p5.setup = () => {
     p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.WEBGL);
-    p5.background(255);
+    p5.textAlign(p5.LEFT, p5.TOP);
     p5.textSize(24);
     p5.strokeWeight(1);
   };
@@ -15,48 +17,62 @@ function Sketch1(p5) {
   }
 
   p5.draw = () => {
-    p5.background(250);
+    p5.background(255);
 
-    p5.square(xPos, yPos, 100);
+    p5.push();
+    p5.translate(staticSquare.x - p5.width / 2, staticSquare.y - p5.height / 2);
+    p5.rect(0, 0, staticSquare.size, staticSquare.size);
+    p5.pop();
+
+    p5.push();
+    p5.translate(xPos - p5.width / 2, yPos - p5.height / 2);
+    p5.square(0, 0, squareSize);
+    p5.pop();
+
     // if (character === 'square') {
     //   p5.square(xPos, yPos, 100);
     // } else {
     //   p5.ellipse(xPos, yPos, 100);
     // }
   
+    p5.push();
+    p5.translate(-p5.width / 2, -p5.height / 2); // Align to top-left corner
     p5.text('[ tutorial ]', 20, 20);
-    p5.text("you can't pass through some objects", 10, 20, 5);
-    p5.text("click to draw!", 90, 60);
-    p5.rect(20, 35, 40, 40);
+    p5.text("you can't pass through some objects", 20, 60);
+    p5.text("click to draw!", 20, 100);
+    p5.pop();
 
-    if (p5.keyIsDown(p5.LEFT_ARROW) === true) {
-      xPos -= 5;
-    } else if (p5.keyIsDown(p5.RIGHT_ARROW) === true) {
-      xPos += 5;
-    } else if (p5.keyIsDown(p5.UP_ARROW) === true) {
-      yPos -= 5;
-    } else if (p5.keyIsDown(p5.DOWN_ARROW) === true) {
-      yPos += 5;
+    if (p5.keyIsDown(p5.LEFT_ARROW)) {
+      const newXPos = xPos - 5;
+      if (newXPos >= -p5.width / 2 && !isColliding(newXPos, yPos, squareSize, staticSquare)) {
+        xPos = newXPos;
+      }
+    } else if (p5.keyIsDown(p5.RIGHT_ARROW)) {
+      const newXPos = xPos + 5;
+      if (newXPos + squareSize <= p5.width / 2 && !isColliding(newXPos, yPos, squareSize, staticSquare)) {
+        xPos = newXPos;
+      }
+    } else if (p5.keyIsDown(p5.UP_ARROW)) {
+      const newYPos = yPos - 5;
+      if (newYPos >= -p5.height / 2 && !isColliding(xPos, newYPos, squareSize, staticSquare)) {
+        yPos = newYPos;
+      }
+    } else if (p5.keyIsDown(p5.DOWN_ARROW)) {
+      const newYPos = yPos + 5;
+      if (newYPos + squareSize <= p5.height / 2 && !isColliding(xPos, newYPos, squareSize, staticSquare)) {
+        yPos = newYPos;
+      }
     }
-  }
+  };
 
-  p5.heart = (x, y, size) => {
-    p5.beginShape();
-    p5.vertex(x, y);
-    p5.bezierVertex(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);
-    p5.bezierVertex(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
-    p5.endShape(p5.CLOSE);
-  }
-
-  p5.levels = () => {
-    if(yPos < p5.windowHeight){
-      
-    }
+  const isColliding = (x1, y1, size1, staticSquare) => {
+    const x2 = staticSquare.x;
+    const y2 = staticSquare.y;
+    const size2 = staticSquare.size;
     
-    if(yPos < 1){
-      
-    }
-  }
+    return !(x1 + size1 < x2 || x1 > x2 + size2 || y1 + size1 < y2 || y1 > y2 + size2);
+  };
+ 
 
   
     // p5.updateWithProps = props => {

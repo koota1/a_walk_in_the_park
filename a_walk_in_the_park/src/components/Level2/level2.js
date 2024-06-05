@@ -17,7 +17,7 @@ import { db } from "../../firebase.js";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Level1({user}) {
+function Level2({user}) {
 
   const [character, setCharacter] = useState('default');
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ function Level1({user}) {
       </span>
       <div className="sketch-container">
         {/* <ReactP5Wrapper sketch={Sketch1} /> */}
-        <ReactP5Wrapper sketch={Sketch1} character={character} />
+        <ReactP5Wrapper sketch={Sketch2} character={character} />
         {/* {<Sketch1 />} */}
       </div>
     </div>
