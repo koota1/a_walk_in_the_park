@@ -1,9 +1,9 @@
 import { ReactP5Wrapper } from "@p5-wrapper/react";
 // import Sketch1 from '../../p5 stuff/p5_object';
-import Sketch1 from './level1_sketch';
+import Sketch2 from './level2_sketch';
 import NavBar from "../Navigation/nav-bar";
 // import Sketch1 from './level1_sketch.js';
-import './level1.css';
+import './level2.css';
 
 import {
   collection,
@@ -64,6 +64,4 @@ function Level1({user}) {
       </div>
     </div>
   );
-}
-
-export default Level1;
+} export default Level1;

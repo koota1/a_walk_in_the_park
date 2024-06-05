@@ -1,0 +1,36 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    padding: 3vw;
+    margin-top: 3vw;
+
+    width: 29vw;
+    min-width: 150px;
+}
+
+.label-email {
+    padding-bottom: 1vw;
+}
+
+.label-password {
+    padding-bottom: 1vw;
+    padding-top: 1vw;
+}
+
+.signup-button {
+    margin-top: 1vw;
+}
+
+.signup-title {
+    font-size: 30px;
+    font-weight: bold;
+}

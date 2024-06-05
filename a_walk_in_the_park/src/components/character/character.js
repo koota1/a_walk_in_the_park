@@ -1,35 +1,65 @@
-import p5 from 'p5';
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import {
+  collection,
+  addDoc,
+  Timestamp,
+} from "firebase/firestore";
+import { db } from "../../firebase.js";
 
-let sharedP5;
-let sprite;
+// add { user }
+function CharSelection({ user }) {
+  
+  const [char, setChar] = useState('default')
+  const [level, setLevel] = useState(1);
 
-const setupSharedP5 = () => {
-  if (!sharedP5) {
-    sharedP5 = new p5(() => {});
-    sprite = sharedP5.createWriter(sharedP5.width / 2, sharedP5.height / 2, 50, 50);
+  const navigate = useNavigate();
+
+  function setNewChar(option) {
+    if (option === 1) {
+      setChar('square')
+    } else if (option === 2) {
+      setChar('ellipse')
+    } else {
+      setChar('default')
+    }
   }
-};
 
-const getCharacter = () => {
-  setupSharedP5();
-  return sprite;
-};
+  async function addCharacter() {
+    try {
+      const createdTimestamp = new Date();
+      const charRef = await addDoc(collection(db, "users"), {
+        userId: user.uid,
+        character: char,
+        level: level,
+        created: createdTimestamp
+      });
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  }
+  
+  const handleNextClick = () => {
+    addCharacter()
+    navigate('/level1')
+  }
+  
+  return (
+    <div>
+      <h3>Set Character!</h3>
+      <div className='char-select'>
+        <span className='char-select-button' onClick={() => setNewChar(1)}>
+          square
+        </span>
+        <span className='char-select-button' onClick={() => setNewChar(2)}>
+          ellipse
+        </span>
+        <span className='start-button' onClick={handleNextClick}>
+          Start
+        </span>
+      </div>
+    </div>
+  );
+}
 
-const handleKeyPress = () => {
-  setupSharedP5();
-  if (sharedP5.keyIsDown(sharedP5.LEFT_ARROW)) {
-    sprite.position.x -= 5;
-  }
-  if (sharedP5.keyIsDown(sharedP5.RIGHT_ARROW)) {
-    sprite.position.x += 5;
-  }
-  if (sharedP5.keyIsDown(sharedP5.UP_ARROW)) {
-    sprite.position.y -= 5;
-  }
-  if (sharedP5.keyIsDown(sharedP5.DOWN_ARROW)) {
-    sprite.position.y += 5;
-  }
-};
-
-export { getCharacter, handleKeyPress };
-
+export default CharSelection;
