@@ -1,9 +1,9 @@
 import { ReactP5Wrapper } from "@p5-wrapper/react";
 // import Sketch1 from '../../p5 stuff/p5_object';
-import Sketch2 from './level2_sketch';
-import NavBar from "../Navigation/nav-bar";
+import Sketch3 from './level3_sketch';
+import NavBar from "../Navigation/nav-bar.js";
 // import Sketch1 from './level1_sketch.js';
-import './level2.css';
+import './level3.css';
 
 import {
   collection,
@@ -17,7 +17,7 @@ import { db } from "../../firebase.js";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Level2({user}) {
+function Level3({user}) {
 
   const [character, setCharacter] = useState('default');
   const navigate = useNavigate();
@@ -59,9 +59,9 @@ function Level2({user}) {
       </span>
       <div className="sketch-container">
         {/* <ReactP5Wrapper sketch={Sketch1} /> */}
-        <ReactP5Wrapper sketch={Sketch2} character={character} />
+        <ReactP5Wrapper sketch={Sketch3} character={character} />
         {/* {<Sketch1 />} */}
       </div>
     </div>
   );
-} export default Level2;
+} export default Level3;

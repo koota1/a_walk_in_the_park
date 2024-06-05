@@ -16,6 +16,19 @@ function App() {
 
   const [user, setUser] = useState(null);
 
+  /*
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate a loading process
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // Change this to your actual loading condition
+
+    return () => clearTimeout(timer);
+  }, []);
+  */
+
   return (
     <Router>
       <Routes>
