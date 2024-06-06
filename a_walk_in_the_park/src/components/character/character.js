@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import {
   collection,
   addDoc,
+  setDoc,
+  doc,
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase.js";
@@ -26,9 +28,10 @@ function CharSelection({ user }) {
   }
 
   async function addCharacter() {
+
     try {
       const createdTimestamp = new Date();
-      const charRef = await addDoc(collection(db, "users"), {
+      const charRef = await setDoc(doc(db, "users", user.uid), {
         userId: user.uid,
         character: char,
         level: level,

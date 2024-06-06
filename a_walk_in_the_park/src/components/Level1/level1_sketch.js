@@ -1,9 +1,8 @@
-
 function Sketch1(p5) {
-
   let [xPos, yPos] = [100, 100];
   const squareSize = 100;
   const staticSquare = { x: 20, y: 35, size: 40 };
+  let character = "ellipse";
 
   p5.setup = () => {
     p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.WEBGL);
@@ -14,10 +13,27 @@ function Sketch1(p5) {
 
   p5.windowResized = () => {
     p5.resizeCanvas(p5.windowWidth, p5.windowheight, p5.WEBGL);
-  }
+  };
+
+  p5.updateWithProps = (props) => {
+    if (props.character) {
+      character = props.character.character;
+    }
+  };
 
   p5.draw = () => {
-    p5.background(255);
+    if (character === "square") {
+      p5.background(0);
+    } else {
+      p5.background(150);
+    }
+    if (character === "square") {
+      p5.square(100, 100, 100);
+    } else {
+      p5.ellipse(100, 100, 100);
+    }
+
+    p5.print(character);
 
     p5.push();
     p5.translate(staticSquare.x - p5.width / 2, staticSquare.y - p5.height / 2);
@@ -29,37 +45,43 @@ function Sketch1(p5) {
     p5.square(0, 0, squareSize);
     p5.pop();
 
-    // if (character === 'square') {
-    //   p5.square(xPos, yPos, 100);
-    // } else {
-    //   p5.ellipse(xPos, yPos, 100);
-    // }
-  
     p5.push();
     p5.translate(-p5.width / 2, -p5.height / 2); // Align to top-left corner
-    p5.text('[ tutorial ]', 20, 20);
-    p5.text("you can't pass through some objects", 20, 60);
-    p5.text("click to draw!", 20, 100);
+    // p5.text('[ tutorial ]', 20, 20);
+    // p5.text("you can't pass through some objects", 20, 60);
+    // p5.text("click to draw!", 20, 100);
     p5.pop();
 
     if (p5.keyIsDown(p5.LEFT_ARROW)) {
       const newXPos = xPos - 5;
-      if (newXPos >= -p5.width / 2 && !isColliding(newXPos, yPos, squareSize, staticSquare)) {
+      if (
+        newXPos >= -p5.width / 2 &&
+        !isColliding(newXPos, yPos, squareSize, staticSquare)
+      ) {
         xPos = newXPos;
       }
     } else if (p5.keyIsDown(p5.RIGHT_ARROW)) {
       const newXPos = xPos + 5;
-      if (newXPos + squareSize <= p5.width / 2 && !isColliding(newXPos, yPos, squareSize, staticSquare)) {
+      if (
+        newXPos + squareSize <= p5.width / 2 &&
+        !isColliding(newXPos, yPos, squareSize, staticSquare)
+      ) {
         xPos = newXPos;
       }
     } else if (p5.keyIsDown(p5.UP_ARROW)) {
       const newYPos = yPos - 5;
-      if (newYPos >= -p5.height / 2 && !isColliding(xPos, newYPos, squareSize, staticSquare)) {
+      if (
+        newYPos >= -p5.height / 2 &&
+        !isColliding(xPos, newYPos, squareSize, staticSquare)
+      ) {
         yPos = newYPos;
       }
     } else if (p5.keyIsDown(p5.DOWN_ARROW)) {
       const newYPos = yPos + 5;
-      if (newYPos + squareSize <= p5.height / 2 && !isColliding(xPos, newYPos, squareSize, staticSquare)) {
+      if (
+        newYPos + squareSize <= p5.height / 2 &&
+        !isColliding(xPos, newYPos, squareSize, staticSquare)
+      ) {
         yPos = newYPos;
       }
     }
@@ -69,22 +91,24 @@ function Sketch1(p5) {
     const x2 = staticSquare.x;
     const y2 = staticSquare.y;
     const size2 = staticSquare.size;
-    
-    return !(x1 + size1 < x2 || x1 > x2 + size2 || y1 + size1 < y2 || y1 > y2 + size2);
+
+    return !(
+      x1 + size1 < x2 ||
+      x1 > x2 + size2 ||
+      y1 + size1 < y2 ||
+      y1 > y2 + size2
+    );
   };
- 
 
-  
-    // p5.updateWithProps = props => {
-    //   if (props.character === 'square') {
-    //     p5.square(xPos, yPos, 100);
-    //   } else if (props.character === 'ellipse') {
-    //     p5.ellipse(xPos, yPos, 100);
-    //   } else {
-    //     p5.text("Shape not recognized", xPos, yPos);
-    //   }
-    // };
-};
-
+  // p5.updateWithProps = props => {
+  //   if (props.character === 'square') {
+  //     p5.square(xPos, yPos, 100);
+  //   } else if (props.character === 'ellipse') {
+  //     p5.ellipse(xPos, yPos, 100);
+  //   } else {
+  //     p5.text("Shape not recognized", xPos, yPos);
+  //   }
+  // };
+}
 
 export default Sketch1;

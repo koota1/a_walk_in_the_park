@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom';
 function Level1({user}) {
 
   const [character, setCharacter] = useState('default');
+  const [level, setLevel] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +29,6 @@ function Level1({user}) {
         const q = query(
           collection(db, "users"),
           where("userId", "==", user.uid),
-          orderBy("created", "desc")
         );
         const querySnapshot = await getDocs(q);
         const charData = querySnapshot.docs.map(user => ({

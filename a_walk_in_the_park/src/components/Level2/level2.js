@@ -28,7 +28,6 @@ function Level2({user}) {
         const q = query(
           collection(db, "users"),
           where("userId", "==", user.uid),
-          orderBy("created", "desc")
         );
         const querySnapshot = await getDocs(q);
         const charData = querySnapshot.docs.map(user => ({
