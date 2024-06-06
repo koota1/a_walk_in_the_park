@@ -10,7 +10,8 @@ import {
   getDocs,
   query,
   where,
-  orderBy,
+  doc,
+  updateDoc
 } from "firebase/firestore";
 import { db } from "../../firebase.js";
 
@@ -20,7 +21,7 @@ import { useNavigate } from 'react-router-dom';
 function Level1({user}) {
 
   const [character, setCharacter] = useState('default');
-  const [level, setLevel] = useState(0);
+  const level = 1;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,11 +40,24 @@ function Level1({user}) {
         console.error("Error fetching notes: ", e);
       }
     }
+
+    async function updateLevel(userId, Level) {
+      const userRef = doc(db, "users", userId);
+  
+      try {
+        await updateDoc(userRef, {
+          level: Level,
+        });
+      } catch (error) {
+        console.error("Error updating document: ", error);
+      }
+    }
     
     if (!user) {
       navigate('/login')
     } else {
       getCharFromDb();
+      updateLevel(user.uid, level);
     }
   }, [user, navigate]);
 
@@ -51,9 +65,7 @@ function Level1({user}) {
     <div className="level1-container">
       <NavBar className="home-button"/>
       <div className="sketch-container">
-        {/* <ReactP5Wrapper sketch={Sketch1} /> */}
         <ReactP5Wrapper sketch={Sketch1} character={character} />
-        {/* {<Sketch1 />} */}
       </div>
     </div>
   );

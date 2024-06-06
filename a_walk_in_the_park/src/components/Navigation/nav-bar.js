@@ -23,17 +23,17 @@ function NavBar(user) {
       });
   }
 
-  function navLevel1(){
-    navigate('/Level1')
+  function navLevel1() {
+    navigate("/Level1");
   }
 
-  function navLevel2(){
-    navigate('/Level2')
+  function navLevel2() {
+    navigate("/Level2");
   }
 
-  //function navLevel3(){
-  //  navigate('/Level3');
-  //}
+  function navLevel3() {
+    navigate("/Level3");
+  }
 
   return (
     <div className="navbar">
@@ -44,13 +44,19 @@ function NavBar(user) {
         <div className="signout-button">screenshot!</div>
       </div>
       <div className="level-wrapper">
-        <div className="level-button" onClick={navLevel1}>level 1</div>
-        <div className="level-button" onClick = {navLevel2}>level 2</div>
-        <div className="level-button" >level 3</div>
+        <div className="level-button" onClick={navLevel1}>
+          level 1
+        </div>
+        <div className="level-button" onClick={navLevel2}>
+          level 2
+        </div>
+        <div className="level-button" onClick={navLevel3}>
+          level 3
+        </div>
       </div>
       <span className="signout-button" onClick={signOutUser}>
-          Sign Out
-        </span>
+        Sign Out
+      </span>
     </div>
   );
 }

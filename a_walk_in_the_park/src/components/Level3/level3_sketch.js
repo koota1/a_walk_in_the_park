@@ -5,9 +5,9 @@
 //import 'p5/lib/addons/p5.dom';
 //import 'p5/lib/addons/p5.sound';
 
-import customFont from "C:/Users/CS_ba/HCDE 438/a_walk_in_the_park/a_walk_in_the_park/src/assets/fonts/Redaction_35-Italic.woff2";
+import customFont from "../../assets/fonts/Redaction35-Italic.otf";
 
-const Sketch3 = () => {
+const Sketch3 = (p5) => {
   let inputElem;
 
   const preload = (p5) => {
@@ -21,7 +21,7 @@ const Sketch3 = () => {
     p5.fill(255);
     p5.stroke(0);
     p5.strokeWeight(2);
-    p5.text("Write anything :)", 24, 40);
+    p5.text("Write anything :)", 0, 0);
 
     inputElem = p5.createInput('');
     inputElem.input(() => onInput(p5));
@@ -66,6 +66,10 @@ const Sketch3 = () => {
 
   const windowResized = (p5) => {
     p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
+  };
+
+  const draw = (p5) => {
+
   };
 
   return (

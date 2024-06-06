@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Redaction-35';
-  /*src: url('/Users/kotab/hcde438/a_walk_in_the_park/a_walk_in_the_park/src/assets/fonts/Redaction_35-Italic.woff2');*/
-  src: url("C:/Users/CS_ba/HCDE 438/a_walk_in_the_park/a_walk_in_the_park/src/assets/fonts/Redaction_35-Italic.woff2");
+  src: url('assets/fonts/Redaction_35-Italic.woff2');
+  /* src: url("C:/Users/CS_ba/HCDE 438/a_walk_in_the_park/a_walk_in_the_park/src/assets/fonts/Redaction_35-Italic.woff2"); */
 }
 
 .App {

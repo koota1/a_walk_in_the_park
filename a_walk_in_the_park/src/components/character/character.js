@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import {
-  collection,
-  addDoc,
   setDoc,
   doc,
-  Timestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase.js";
 import './character.css';
@@ -14,7 +11,7 @@ import './character.css';
 function CharSelection({ user }) {
   
   const [char, setChar] = useState('default')
-  const [level, setLevel] = useState(1);
+  const level = 1;
 
   const navigate = useNavigate();
 

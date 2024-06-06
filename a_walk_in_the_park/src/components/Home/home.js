@@ -3,12 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../Navigation/nav-bar';
 import "./home.css";
 
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+import { db } from "../../firebase.js";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 
 function Home({ setUser }) {
 
-  const [localUser, setLocalUser] = useState(null);
+  const [user, setLocalUser] = useState(null);
+  const [uData, setUData] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,12 +33,44 @@ function Home({ setUser }) {
         navigate('/login')
       }
     });
-  }, []);
+  }, [navigate, setUser]);
 
   const [showButtons, setShowButtons] = useState(false);
 
   const handleStartClick = () => {
     navigate('/char-select');
+  };
+
+  const handleLoadClick = () => {
+    // let uData;
+    async function getUserData() {
+      try {
+        const q = query(
+          collection(db, "users"),
+          where("userId", "==", user.uid),
+        );
+        const querySnapshot = await getDocs(q);
+        const userData = querySnapshot.docs.map(user => ({
+          level: user.data().level
+        }));
+        setUData(userData[0].level);
+      } catch (e) {
+        console.error("Error fetching notes: ", e);
+      }
+    }
+
+    if (user) {
+      getUserData();
+    }
+
+    console.log(uData)  
+    if (uData === 1) {
+      navigate('/level1');
+    } else if (uData === 2) {
+      navigate('/level2');
+    } else {
+      navigate('/');
+    }
   };
 
   useEffect(() => {
@@ -46,7 +87,7 @@ function Home({ setUser }) {
       {showButtons && (
         <div className="fade-in">
           <div className="start-button" onClick={handleStartClick}> Start </div>
-          <div className="start-button"> Load </div>
+          <div className="start-button" onClick={handleLoadClick}> Load </div>
         </div>
       )}
     </div>

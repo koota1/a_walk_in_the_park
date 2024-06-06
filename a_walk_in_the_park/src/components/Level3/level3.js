@@ -10,7 +10,6 @@ import {
   getDocs,
   query,
   where,
-  orderBy,
 } from "firebase/firestore";
 import { db } from "../../firebase.js";
 
@@ -28,7 +27,6 @@ function Level3({user}) {
         const q = query(
           collection(db, "users"),
           where("userId", "==", user.uid),
-          orderBy("created", "desc")
         );
         const querySnapshot = await getDocs(q);
         const charData = querySnapshot.docs.map(user => ({
@@ -46,21 +44,12 @@ function Level3({user}) {
       getCharFromDb();
     }
   }, [user, navigate]);
-  
-  function updateCharacter() {
-    setCharacter(character);
-  }
 
   return (
     <div className="level1-container">
       <NavBar className="home-button"/>
-      <span className="update-button" onClick={updateCharacter}>
-        load character
-      </span>
       <div className="sketch-container">
-        {/* <ReactP5Wrapper sketch={Sketch1} /> */}
-        <ReactP5Wrapper sketch={Sketch3} character={character} />
-        {/* {<Sketch1 />} */}
+        <ReactP5Wrapper sketch={Sketch3} />
       </div>
     </div>
   );

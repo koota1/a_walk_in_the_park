@@ -1,6 +1,6 @@
 
 
-function Sketch2(p5, props) {
+function Sketch2(p5) {
 
   let numBalls = 25;
   let spring = 0.1;
@@ -11,6 +11,7 @@ function Sketch2(p5, props) {
   let playerSize = 50;
   let score = 0;
   let gameActive = true;
+  let character = 'ellipse'
 
   p5.setup = () => {
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
@@ -31,12 +32,18 @@ function Sketch2(p5, props) {
     p5.fill(255, 255);
   };
 
+  p5.updateWithProps = (props) => {
+    if (props.character) {
+      character = props.character.character;
+    }
+  };
+
   p5.windowResized = () => {
     p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
   };
 
   p5.draw = () => {
-    p5.background(0);
+    p5.background(255);
 
     if (gameActive) {
       score += p5.deltaTime / 1000; // Increment score by time passed in seconds
@@ -51,7 +58,7 @@ function Sketch2(p5, props) {
       ball.display();
     });
 
-    p5.fill(255);
+    p5.fill(0);
     p5.textSize(32);
     p5.text(`Score: ${score.toFixed(2)}`, 10, 30);
 
@@ -157,8 +164,13 @@ function Sketch2(p5, props) {
     }
 
     display() {
-      this.p5.fill(255);
-      this.p5.rect(this.x, this.y, this.size, this.size);
+      this.p5.fill(0);
+      if (character === 'square') {
+        this.p5.rect(this.x, this.y, this.size, this.size);
+      } else {
+        this.p5.ellipse(this.x, this.y, this.size, this.size);
+      }
+      // this.p5.rect(this.x, this.y, this.size, this.size);
     }
 
     isColliding(x, y) {
