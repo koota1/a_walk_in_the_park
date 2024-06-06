@@ -47,6 +47,7 @@ function Level3({user}) {
 
   return (
     <div className="level1-container">
+      <div className = "messsage"> Coming Soon! </div>
       <NavBar className="home-button"/>
       <div className="sketch-container">
         <ReactP5Wrapper sketch={Sketch3} />

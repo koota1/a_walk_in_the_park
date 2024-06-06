@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Redaction-35';
+  src: url('../../assets/fonts/Redaction_35-Italic.woff2');
+}
+
 .level3-container {
     position: relative;
     width: 100vw;
@@ -30,4 +35,9 @@
       cursor: pointer;
   }
   
-  
+  .message{
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Redaction-35';
+    font-size: 4rem; 
+  }
