@@ -46,17 +46,10 @@ function Level1({user}) {
       getCharFromDb();
     }
   }, [user, navigate]);
-  
-  function updateCharacter() {
-    setCharacter(character);
-  }
 
   return (
     <div className="level1-container">
       <NavBar className="home-button"/>
-      <span className="update-button" onClick={updateCharacter}>
-        load character
-      </span>
       <div className="sketch-container">
         {/* <ReactP5Wrapper sketch={Sketch1} /> */}
         <ReactP5Wrapper sketch={Sketch1} character={character} />
