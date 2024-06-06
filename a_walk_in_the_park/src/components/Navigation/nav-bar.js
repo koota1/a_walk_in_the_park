@@ -41,7 +41,7 @@ function NavBar(user) {
         <button className="home-button" onClick={handleHomeClick}>
           <FontAwesomeIcon icon={faHome} />
         </button>
-        <div className="signout-button">screenshot!</div>
+        {/* <div className="signout-button">screenshot!</div> */}
       </div>
       <div className="level-wrapper">
         <div className="level-button" onClick={navLevel1}>

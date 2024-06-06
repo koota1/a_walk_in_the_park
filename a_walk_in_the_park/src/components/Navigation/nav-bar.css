@@ -11,6 +11,7 @@
 .home-button {
   background: none;
   border: none;
+  margin-left: 10;
   font-size: 24px;
   cursor: pointer;
   color: #000;
