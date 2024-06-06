@@ -1,21 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import NavBar from '../Navigation/nav-bar';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import NavBar from "../Navigation/nav-bar";
 import "./home.css";
 
-import {
-  collection,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase.js";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 
 function Home({ setUser }) {
-
   const [user, setLocalUser] = useState(null);
   const [uData, setUData] = useState(0);
   const navigate = useNavigate();
@@ -30,7 +24,7 @@ function Home({ setUser }) {
         // No user
         setLocalUser(null);
         setUser(null); // Assign null if no user
-        navigate('/login')
+        navigate("/login");
       }
     });
   }, [navigate, setUser]);
@@ -38,7 +32,7 @@ function Home({ setUser }) {
   const [showButtons, setShowButtons] = useState(false);
 
   const handleStartClick = () => {
-    navigate('/char-select');
+    navigate("/char-select");
   };
 
   const handleLoadClick = () => {
@@ -47,13 +41,21 @@ function Home({ setUser }) {
       try {
         const q = query(
           collection(db, "users"),
-          where("userId", "==", user.uid),
+          where("userId", "==", user.uid)
         );
         const querySnapshot = await getDocs(q);
-        const userData = querySnapshot.docs.map(user => ({
-          level: user.data().level
+        const userData = querySnapshot.docs.map((user) => ({
+          level: user.data().level,
         }));
         setUData(userData[0].level);
+        console.log(uData);
+        if (uData === 1) {
+          navigate("/level1");
+        } else if (uData === 2) {
+          navigate("/level2");
+        } else {
+          navigate("/");
+        }
       } catch (e) {
         console.error("Error fetching notes: ", e);
       }
@@ -61,15 +63,6 @@ function Home({ setUser }) {
 
     if (user) {
       getUserData();
-    }
-
-    console.log(uData)  
-    if (uData === 1) {
-      navigate('/level1');
-    } else if (uData === 2) {
-      navigate('/level2');
-    } else {
-      navigate('/');
     }
   };
 
@@ -82,12 +75,18 @@ function Home({ setUser }) {
 
   return (
     <div className="container">
-      <NavBar className="home-button"/>
+      <NavBar className="home-button" />
       <div className="pixelated-welcome">Welcome</div>
       {showButtons && (
         <div className="fade-in">
-          <div className="start-button" onClick={handleStartClick}> Start </div>
-          <div className="start-button" onClick={handleLoadClick}> Load </div>
+          <div className="start-button" onClick={handleStartClick}>
+            {" "}
+            Start{" "}
+          </div>
+          <div className="start-button" onClick={handleLoadClick}>
+            {" "}
+            Load{" "}
+          </div>
         </div>
       )}
     </div>
