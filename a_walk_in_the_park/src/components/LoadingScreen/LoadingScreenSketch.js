@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import p5 from 'p5';
-import spiralImg from "C:\Users\CS_ba\HCDE 438\a_walk_in_the_park\a_walk_in_the_park\src\assets\images\AWITP Spiral bg.png";
+import spiralImg from "C:/Users/CS_ba/HCDE 438/a_walk_in_the_park/a_walk_in_the_park/src/assets/images/AWITP Spiral bg.png";
 
 const LoadingScreenSketch = () => {
   const sketchRef = useRef();
@@ -29,6 +29,7 @@ const LoadingScreenSketch = () => {
         if (!loaded) {
           p.translate(p.width / 2, p.height / 2);
           p.rotate(p.frameCount * 2);
+          p.frameRate(15);
           p.image(spiral, 0, 0, spiral.width / 2, spiral.height / 2);
         }
       };
