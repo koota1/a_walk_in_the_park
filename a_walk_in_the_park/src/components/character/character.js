@@ -8,6 +8,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase.js";
+import './character.css';
 
 // add { user }
 function CharSelection({ user }) {
@@ -28,7 +29,6 @@ function CharSelection({ user }) {
   }
 
   async function addCharacter() {
-
     try {
       const createdTimestamp = new Date();
       const charRef = await setDoc(doc(db, "users", user.uid), {
@@ -50,6 +50,7 @@ function CharSelection({ user }) {
   return (
     <div className = "characters-wrapper">
       <h3>Set Character!</h3>
+      <p>{char}</p>
       <div className='char-select'>
         <span className='button'onClick={() => setNewChar(1)}> square </span>
         <span className='button'onClick={() => setNewChar(2)}> ellipse </span>
