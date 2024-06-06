@@ -1,43 +1,23 @@
 @font-face {
-  font-family: 'Redaction-35';
-  src: url('../../assets/fonts/Redaction_35-Italic.woff2');
+  font-family: "Redaction-35";
+  src: url("../../assets/fonts/Redaction_35-Italic.woff2");
 }
 
 .level3-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden; /* Prevent scrolling */
-    margin: 0;
-    padding: 0;
-  }
-  
-  .sketch-container {
-    width: 100%;
-    height: 100%;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Prevent scrolling */
+  margin: 0;
+  padding: 0;
+}
 
-  .update-button {
-    position: fixed;
-    top: 55px;
-    left: 5px;
-    border: 2px solid black;
-    border-radius: 3px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-left: 10px;
-  }
-  
-  .update-button:hover {
-      background-color: #d3d3d3;
-      cursor: pointer;
-  }
-  
-  .message{
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Redaction-35';
-    font-size: 4rem; 
-  }
+.message {
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Redaction-35";
+  font-size: 4rem;
+}

@@ -46,12 +46,12 @@ function Level3({user}) {
   }, [user, navigate]);
 
   return (
-    <div className="level1-container">
-      <div className = "messsage"> Coming Soon! </div>
+    <div className="level3-container">
       <NavBar className="home-button"/>
-      <div className="sketch-container">
+      <div className = "message"> Coming Soon! </div>
+      {/* <div className="sketch-container">
         <ReactP5Wrapper sketch={Sketch3} />
-      </div>
+      </div> */}
     </div>
   );
 } export default Level3;
